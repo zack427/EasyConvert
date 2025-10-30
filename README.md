@@ -39,16 +39,17 @@ EasyConvert permite que qualquer usuário envie arquivos Word (.docx) e receba o
 
 ## 📁 Estrutura do Projeto
 wordtopdf/
-|
-|-- server.js
-|-- package.json
-|-- README.md
-|-- .gitignore
-|-- uploads/ # arquivos Word enviados (não enviado ao GitHub)
-|-- pdfs/ # PDFs gerados (não enviado ao GitHub)
-|-- config/
-| |-- db.js
-|-- public/ # frontend (HTML, CSS, JS)
+│
+├── server.js
+├── package.json
+├── README.md
+├── .gitignore
+├── uploads/       # arquivos Word enviados (não enviado ao GitHub)
+├── pdfs/          # PDFs gerados (não enviado ao GitHub)
+├── config/
+│   └── db.js
+└── public/        # frontend (HTML, CSS, JS)
+
 
 
 ---

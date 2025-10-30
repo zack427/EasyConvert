@@ -65,7 +65,6 @@ cd EasyConvert
 npm install
 
 mkdir uploads pdfs
-mkdir uploads 
 
 node server.js
 

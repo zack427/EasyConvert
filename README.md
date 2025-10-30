@@ -38,6 +38,7 @@ EasyConvert permite que qualquer usuário envie arquivos Word (.docx) e receba o
 ---
 
 ## 📁 Estrutura do Projeto
+```
 wordtopdf/
 │
 ├── server.js
@@ -49,7 +50,7 @@ wordtopdf/
 ├── config/
 │   └── db.js
 └── public/        # frontend (HTML, CSS, JS)
-
+```
 
 
 ---

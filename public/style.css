@@ -1,0 +1,15 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+  letter-spacing: 1px;
+}
+
+.btn-danger {
+  background: linear-gradient(45deg, #e50914, #b0060e);
+}
+
+.table-dark th, .table-dark td {
+  vertical-align: middle;
+}

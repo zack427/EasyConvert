@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word to PDF</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <h1 class="mb-4">Converter Word para PDF</h1>
+
+    <!-- Formulário de upload -->
+    <form id="uploadForm" class="mb-4">
+      <input type="file" id="fileInput" class="form-control mb-2" accept=".docx" required>
+      <button type="submit" class="btn btn-primary">Enviar e Converter</button>
+    </form>
+
+    <!-- Lista de documentos -->
+    <h3>Documentos enviados</h3>
+    <ul id="documentList" class="list-group"></ul>
+  </div>
+
+  <script>
+    const uploadForm = document.getElementById('uploadForm');
+    const fileInput = document.getElementById('fileInput');
+    const documentList = document.getElementById('documentList');
+
+    // Carregar documentos
+    async function loadDocuments() {
+      const res = await fetch('/documents');
+      const docs = await res.json();
+      documentList.innerHTML = '';
+      docs.forEach(doc => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        li.id = `doc-${doc.id}`;
+        li.innerHTML = `
+          ${doc.original_name}
+          <div>
+            <button class="btn btn-success btn-sm me-2" onclick="downloadPDF('${doc.pdf_name}', '${doc.original_name}')">Baixar PDF</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteDocument(${doc.id})">Excluir</button>
+          </div>
+        `;
+        documentList.appendChild(li);
+      });
+    }
+
+    // Função para download do PDF
+    function downloadPDF(pdfFile, originalName) {
+      const link = document.createElement('a');
+      link.href = `/download/${pdfFile}`;
+      link.download = originalName.replace('.docx', '.pdf');
+      link.click();
+    }
+
+    // Upload e conversão
+    uploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!fileInput.files.length) return alert('Escolha um arquivo!');
+
+      const data = new FormData();
+      data.append('file', fileInput.files[0]);
+
+      try {
+        const res = await fetch('/upload', { method: 'POST', body: data });
+        const response = await res.json();
+        if (response.downloadUrl) {
+          // Baixa PDF automaticamente
+          const link = document.createElement('a');
+          link.href = response.downloadUrl;
+          link.download = fileInput.files[0].name.replace('.docx', '.pdf');
+          link.click();
+        }
+        fileInput.value = '';
+        await loadDocuments(); // Atualiza a lista de documentos
+      } catch (err) {
+        console.error(err);
+        alert('Erro ao enviar/converter arquivo');
+      }
+    });
+
+    // Deletar documento
+    async function deleteDocument(id) {
+      if (!confirm('Tem certeza que quer excluir este arquivo?')) return;
+
+      try {
+        const res = await fetch(`/documents/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          document.getElementById(`doc-${id}`).remove();
+          alert('Documento excluído!');
+        } else {
+          alert('Erro ao excluir documento');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro ao excluir documento');
+      }
+    }
+
+    // Carrega documentos ao abrir a página
+    loadDocuments();
+  </script>
+</body>
+</html>

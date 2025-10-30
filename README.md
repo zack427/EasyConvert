@@ -11,7 +11,6 @@ EasyConvert é um site que converte arquivos Word (.docx) em PDF de forma rápid
 - Responsividade
 - Próximas Melhorias
 - Autor
-- Licença
 
 ---
 
@@ -40,46 +39,42 @@ EasyConvert permite que qualquer usuário envie arquivos Word (.docx) e receba o
 
 ## 📁 Estrutura do Projeto
 wordtopdf/
-│
-├── server.js
-├── package.json
-├── README.md
-├── .gitignore
-├── uploads/ # arquivos Word enviados (não enviado ao GitHub)
-├── pdfs/ # PDFs gerados (não enviado ao GitHub)
-├── config/
-│ └── db.js
-└── public/ # frontend (HTML, CSS, JS)
+|
+|-- server.js
+|-- package.json
+|-- README.md
+|-- .gitignore
+|-- uploads/ # arquivos Word enviados (não enviado ao GitHub)
+|-- pdfs/ # PDFs gerados (não enviado ao GitHub)
+|-- config/
+| |-- db.js
+|-- public/ # frontend (HTML, CSS, JS)
 
 
 ---
 
 ## 🔧 Instalação e Uso
+
 Clone o repositório:
 
+```bash
 git clone https://github.com/zack427/EasyConvert.git
-
-
 cd EasyConvert
-
 npm install
 
 mkdir uploads pdfs
-
-Crie um arquivo .env com suas variáveis (ex: CLOUDCONVERT_API_KEY) se for usar a API.
-
-Rode o servidor:
+mkdir uploads 
 
 node server.js
 
-
 Abra no navegador: http://localhost:3000
 
-##📱 Responsividade
+
+📱 Responsividade
 
 O site funciona em desktop, tablet e mobile, reorganizando o layout e mantendo menus acessíveis.
 
-##🔮 Próximas Melhorias
+🔮 Próximas Melhorias
 
 Melhorias na interface do usuário
 

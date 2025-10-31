@@ -66,6 +66,14 @@ npm install
 
 mkdir uploads pdfs
 
+LibreOffice instalado localmente
+
+Caminho padrão no Windows: C:\Program Files\LibreOffice\program\soffice.exe
+
+No Linux/Mac, ajuste o caminho conforme a instalação
+
+Sem o LibreOffice instalado, a conversão de Word para PDF não funcionará
+
 node server.js
 
 Abra no navegador: http://localhost:3000

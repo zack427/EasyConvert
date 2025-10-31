@@ -31,8 +31,8 @@ EasyConvert permite que qualquer usuário envie arquivos Word (.docx) e receba o
 
 ## 🛠 Tecnologias Utilizadas
 - **Node.js + Express**: Servidor e backend
-- **MySQL / PlanetScale**: Banco de dados
-- **LibreOffice (local) / CloudConvert API**: Conversão Word → PDF
+- **MySQL**: Banco de dados
+- **LibreOffice (local)**: Conversão Word → PDF
 - **HTML, CSS, Bootstrap, JavaScript**: Frontend responsivo e interativo
 
 ---

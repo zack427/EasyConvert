@@ -70,6 +70,43 @@ node server.js
 
 Abra no navegador: http://localhost:3000
 
+## 🗄️ Banco de Dados
+
+O projeto utiliza MySQL.  
+Para criar o banco localmente, você pode usar o script SQL abaixo.
+
+### Script SQL para criar o banco e a tabela `documents`:
+
+```sql
+CREATE DATABASE wordtopdf_db;
+USE wordtopdf_db;
+
+CREATE TABLE `documents` (
+  `id` int(11) NOT NULL,
+  `original_name` varchar(255) NOT NULL,
+  `stored_name` varchar(255) NOT NULL,
+  `pdf_name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `documents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+
+##Instruções para uso:
+
+Abra o phpMyAdmin (ou outro cliente MySQL).
+
+Crie um banco chamado wordtopdf_db.
+
+Copie o script SQL acima e cole na aba SQL do phpMyAdmin.
+
+Execute o script. A tabela documents será criada e estará pronta para uso.
+
+Certifique-se de configurar o arquivo config/db.js com suas credenciais do MySQL locais.
 
 📱 Responsividade
 

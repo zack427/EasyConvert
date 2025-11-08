@@ -3,7 +3,7 @@ const fileInput = document.getElementById('fileInput');
 const alertBox = document.getElementById('alertBox');
 const tableBody = document.getElementById('tableBody');
 
-// Carrega documentos do banco e atualiza a tabela
+
 async function carregarDocumentos() {
   const res = await fetch('/documents');
   const docs = await res.json();
@@ -17,14 +17,14 @@ async function carregarDocumentos() {
   `).join('');
 }
 
-// Deleta documento do banco e arquivos
+
 async function deletar(id) {
   if (!confirm('Tem certeza que deseja excluir?')) return;
   await fetch(`/documents/${id}`, { method: 'DELETE' });
   carregarDocumentos();
 }
 
-// Upload e conversão
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   const file = fileInput.files[0];
@@ -43,5 +43,5 @@ form.addEventListener('submit', async (e) => {
   carregarDocumentos();
 });
 
-// Carrega os documentos assim que a página abre
+
 carregarDocumentos();

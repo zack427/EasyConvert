@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '', // deixa vazio se o XAMPP estiver no padrão
+  password: '', 
   database: 'wordtopdf_db'
 });
 

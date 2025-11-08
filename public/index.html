@@ -10,13 +10,13 @@
   <div class="container py-5">
     <h1 class="mb-4">Converter Word para PDF</h1>
 
-    <!-- Formulário de upload -->
+
     <form id="uploadForm" class="mb-4">
       <input type="file" id="fileInput" class="form-control mb-2" accept=".docx" required>
       <button type="submit" class="btn btn-primary">Enviar e Converter</button>
     </form>
 
-    <!-- Lista de documentos -->
+    
     <h3>Documentos enviados</h3>
     <ul id="documentList" class="list-group"></ul>
   </div>
@@ -26,7 +26,7 @@
     const fileInput = document.getElementById('fileInput');
     const documentList = document.getElementById('documentList');
 
-    // Carregar documentos
+
     async function loadDocuments() {
       const res = await fetch('/documents');
       const docs = await res.json();
@@ -46,7 +46,7 @@
       });
     }
 
-    // Função para download do PDF
+   
     function downloadPDF(pdfFile, originalName) {
       const link = document.createElement('a');
       link.href = `/download/${pdfFile}`;
@@ -54,7 +54,7 @@
       link.click();
     }
 
-    // Upload e conversão
+    
     uploadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!fileInput.files.length) return alert('Escolha um arquivo!');
@@ -80,7 +80,7 @@
       }
     });
 
-    // Deletar documento
+    
     async function deleteDocument(id) {
       if (!confirm('Tem certeza que quer excluir este arquivo?')) return;
 
@@ -98,7 +98,7 @@
       }
     }
 
-    // Carrega documentos ao abrir a página
+    
     loadDocuments();
   </script>
 </body>

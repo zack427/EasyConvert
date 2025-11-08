@@ -10,14 +10,14 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/pdfs', express.static(path.join(__dirname, 'pdfs')));
 
-// Cria pastas se não existirem
+
 if (!fs.existsSync('uploads')) fs.mkdirSync('uploads');
 if (!fs.existsSync('pdfs')) fs.mkdirSync('pdfs');
 
-// Configuração Multer
+
 const upload = multer({ dest: 'uploads/' });
 
-// Upload e conversão usando LibreOffice
+
 app.post('/upload', upload.single('file'), (req, res) => {
   if (!req.file) return res.status(400).send('Nenhum arquivo enviado');
 
@@ -28,7 +28,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
   const pdfPath = path.join(__dirname, 'pdfs', pdfName);
 
   try {
-    // Renomeia o arquivo enviado
+    
     fs.renameSync(req.file.path, uploadPath);
 
     // Chama LibreOffice para converter
@@ -41,7 +41,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
         return res.status(500).send('Erro ao converter arquivo');
       }
 
-      // Salva no banco
+      
       db.query(
         'INSERT INTO documents (original_name, stored_name, pdf_name) VALUES (?, ?, ?)',
         [originalName, storedName, pdfName],
@@ -71,7 +71,7 @@ app.get('/download/:filename', (req, res) => {
   }
 });
 
-// Listar documentos
+
 app.get('/documents', (req, res) => {
   db.query('SELECT * FROM documents ORDER BY created_at DESC', (err, results) => {
     if (err) {
@@ -82,7 +82,7 @@ app.get('/documents', (req, res) => {
   });
 });
 
-// Deletar documento
+
 app.delete('/documents/:id', (req, res) => {
   const id = req.params.id;
 
